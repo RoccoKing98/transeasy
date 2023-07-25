@@ -10,4 +10,7 @@ gemspec
 
 group :development do
   gem 'rubocop'
+  gem 'bundler-audit'
+  gem 'ruby_audit'
+  gem 'brakeman'
 end
