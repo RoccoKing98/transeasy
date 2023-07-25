@@ -8,7 +8,10 @@ Gem::Specification.new do |spec|
   spec.files         = ["lib/transeasy.rb"]
   spec.homepage      = "https://transeasy.net"
   spec.license       = "MIT"
-  spec.files         = Dir["{lib}/**/*", "transeasy.gemspec", "Gemfile", "README.md"]
+  spec.files         = Dir["{app, confif, lib}/**/*", "transeasy.gemspec", "Gemfile", "README.md"]
   spec.require_paths = ["lib"]
+
+  spec.add_dependency  "rails", ">=7.0"
+  spec.add_dependency  "bootstrap", ">=5.2"
 end
 
