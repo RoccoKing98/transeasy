@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'transeasy'
-  spec.version       = '0.0.1'
+  spec.version       = '0.0.2'
   spec.summary       = 'Translate your text easily'
   spec.description   = 'Translate your text easily'
   spec.authors       = ['Rocco King']
