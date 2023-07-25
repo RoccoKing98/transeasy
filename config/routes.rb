@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Transeasy::Engine.routes.draw do
-  root "translations#index"
+  root 'translations#index'
 end

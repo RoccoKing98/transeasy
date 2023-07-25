@@ -1,7 +1,8 @@
-module Transeasy
-  class TranslationsController < ApplicationController
+# frozen_string_literal: true
 
-    def index
-    end
+module Transeasy
+  # Controller for translations
+  class TranslationsController < ApplicationController
+    def index; end
   end
 end
