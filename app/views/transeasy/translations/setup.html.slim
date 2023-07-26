@@ -1,0 +1,14 @@
+h1.page-title Transeasy Configuration
+
+form
+  .row.align-items-center.g-1
+    .col-auto
+      = select_tag :root_locale, options_for_select(Transeasy.config.all_languages.map{|l| l[:title]}, params[:root_locale]), prompt: 'Select a language', class: 'form-select', style: 'min-width: 200px'
+
+    .col-auto
+      button.btn.btn-primary.btn-sm type="submit" Filter
+
+= form_with model: @settings, url: save_setup_translations_path, method: :post do |f|
+  = f.label "Some label"
+  = f.select :root_locale, Transeasy.config.all_languages.collect { |c| ["#{c[:title]} (#{c[:lang]})", c[:lang]] }, include_blank: true
+  = f.submit

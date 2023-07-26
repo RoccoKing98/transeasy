@@ -22,8 +22,44 @@ html
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" integrity="sha512-IJ+BZHGlT4K43sqBGUzJ90pcxfkREDVZPZxeexRigVL8rzdw/gyJIflDahMdNzBww4k0WxpyaWpC2PLQUWmMUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
     link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"
 
-
   body
     .container.mt-5
-      = render 'shared/nav'
-      | Welcome to TransEasy again
+      = render 'transeasy/shared/flash'
+      = render 'transeasy/shared/nav'
+
+      = yield
+
+javascript:
+    document.addEventListener("DOMContentLoaded", function() {
+        $("form").attr("autocomplete", "off");
+
+        $('.field_with_errors').addClass('is-invalid');
+
+        var alerts = $(".alert:not(.permanent)")
+        setTimeout(function () {
+            alerts.fadeOut();
+        }, 8000);
+
+        autosize($('textarea'));
+
+        $("select").each(function () {
+            $(this).removeClass("form-select");
+
+            new SlimSelect({
+                select: this,
+                settings: {
+                    //contentLocation: document.body,
+                    contentLocation: this.parentElement,
+                    closeOnSelect: !this.hasAttribute("multiple"),
+                    openPosition: 'down', // options: auto, up, down
+                    //placeholderText: "Select Value",
+                    placeholderText: "Select...",
+                    //searchPlaceholder: 'Search',
+                    //searchText: 'No Results',
+                    //searchingText: 'Searching...',
+                    maxValuesShown: 999, // defaults to 20, max selected items show in multi-selects
+                    //maxValuesShown: 20,
+                }
+            })
+        });
+    })
