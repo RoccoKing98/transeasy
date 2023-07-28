@@ -3,15 +3,23 @@
 module Transeasy
   # Controller for translations
   class TranslationsController < ApplicationController
-    before_action :check_setup, except: [:setup, :save_setup]
+    before_action :check_setup, except: [:save_setup]
 
     def index
       unless ActiveRecord::Base.connection.data_source_exists? 'transeasy_translation_settings'
-        flash.alert = "Has migration not yet been performed? Missing database"
+        flash.alert = 'Has migration not yet been performed? Missing database'
       end
     end
 
     def save_setup
+      @settings = TranslationSetting.first_or_create
+      if params[:target_languages].blank?
+        flash[:alert] = 'Changes not saved. At least one target language must be selected'
+      elsif @settings.update(setup_params)
+        flash[:notice] = 'Changes saved'
+      else
+        flash[:alert] = "Changes not saved. #{@settings.errors.full_messages.join(',')}"
+      end
       render :setup
     end
 
@@ -21,7 +29,7 @@ module Transeasy
     end
 
     def setup_params
-      params.permit(:root_locale)
+      params.permit(:root_language, :translation_engine, :translation_engine_parameters, target_languages: [])
     end
   end
 end

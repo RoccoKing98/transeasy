@@ -35,7 +35,7 @@ javascript:
 
         $('.field_with_errors').addClass('is-invalid');
 
-        var alerts = $(".alert:not(.permanent)")
+        const alerts = $(".alert:not(.permanent)");
         setTimeout(function () {
             alerts.fadeOut();
         }, 8000);
@@ -44,7 +44,13 @@ javascript:
 
         $("select").each(function () {
             $(this).removeClass("form-select");
-
+            let placeholderText = "Select...";
+            if (this.id === 'root-language') {
+                placeholderText = 'Select your root language';
+            } else if (this.id === 'target-languages') {
+                placeholderText = 'Select your target languages';
+            }
+            console.dir(this.id)
             new SlimSelect({
                 select: this,
                 settings: {
@@ -52,13 +58,9 @@ javascript:
                     contentLocation: this.parentElement,
                     closeOnSelect: !this.hasAttribute("multiple"),
                     openPosition: 'down', // options: auto, up, down
-                    //placeholderText: "Select Value",
-                    placeholderText: "Select...",
-                    //searchPlaceholder: 'Search',
-                    //searchText: 'No Results',
-                    //searchingText: 'Searching...',
-                    maxValuesShown: 999, // defaults to 20, max selected items show in multi-selects
-                    //maxValuesShown: 20,
+                    placeholderText: placeholderText,
+                    maxValuesShown: 200, // defaults to 20, max selected items show in multi-selects
+                    hideSelected: true,
                 }
             })
         });

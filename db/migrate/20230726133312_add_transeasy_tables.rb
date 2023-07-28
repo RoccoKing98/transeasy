@@ -6,9 +6,11 @@ class AddTranseasyTables < ActiveRecord::Migration[7.0]
     drop_table :transeasy_translation_values, if_exists: true
 
     create_table :transeasy_translation_settings do |t|
-      t.string :root_locale, null: false
-      t.string :intermediate_locale
-      t.text :target_locales, null: false
+      t.string :root_language, null: false
+      t.text :target_languages, null: false
+      t.string :translation_engine
+      t.string :translation_engine_parameters
+      t.string :intermediate_language
       t.timestamps
     end
 

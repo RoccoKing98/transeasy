@@ -1,14 +1,25 @@
 h1.page-title Transeasy Configuration
 
-form
-  .row.align-items-center.g-1
-    .col-auto
-      = select_tag :root_locale, options_for_select(Transeasy.config.all_languages.map{|l| l[:title]}, params[:root_locale]), prompt: 'Select a language', class: 'form-select', style: 'min-width: 200px'
-
-    .col-auto
-      button.btn.btn-primary.btn-sm type="submit" Filter
-
 = form_with model: @settings, url: save_setup_translations_path, method: :post do |f|
-  = f.label "Some label"
-  = f.select :root_locale, Transeasy.config.all_languages.collect { |c| ["#{c[:title]} (#{c[:lang]})", c[:lang]] }, include_blank: true
-  = f.submit
+  .row.align-items-center.mb-5.mt-5
+    .col-auto
+      = select_tag(:root_language, options_for_select(Transeasy.config.all_languages.map{|l| l[:title] }.sort, f.object&.root_language), prompt: 'Select your root language', class: 'form-select', style: 'min-width: 200px', id: 'root-language')
+
+  .row.align-items-center.mb-5
+    .col-auto
+      = select_tag(:target_languages, options_for_select(Transeasy.config.all_languages.map{|l| l[:title] }.sort, to_array(f.object&.target_languages)), multiple: true, class: 'form-select', style: 'min-width: 200px', id: 'target-languages')
+
+  .row.align-items-center.mb-5.mt-5
+    .col-auto
+      = select_tag(:translation_engine, options_for_select(Transeasy.config.all_translation_engines.map{|l| l[:name] }.sort, f.object&.translation_engine), prompt: 'Select your translation engine, if you are using one', class: 'form-select', style: 'min-width: 400px', id: 'translation-engine')
+
+  .row.align-items-center.mb-5.mt-5
+    .col-auto
+      = f.label('Translation engine parameters:')
+
+    .col-auto
+      = f.text_field(:translation_engine_parameters, value: f.object&.translation_engine_parameters, style: 'width: 500px')
+
+  .row.align-items-center.mb-5.mt-5
+    .col-auto
+      = f.submit('Update Settings', class: 'btn btn-primary btn-sm')
