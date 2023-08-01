@@ -4,7 +4,7 @@ Transeasy::Engine.routes.draw do
   root 'translations#index'
 
 
-  get "/setup", to: "translations#setup"
+  get '/setup', to: 'translations#setup'
 
   resource :translations do
     member do

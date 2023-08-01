@@ -17,7 +17,7 @@ module Transeasy
 
     def target_languages_are_valid
       all_titles = Transeasy.config.all_languages.map { |l| l[:title] }
-      to_array(target_languages).each do |l|
+      to_array(target_languages)&.each do |l|
         all_titles.include?(l)
       end
     end
