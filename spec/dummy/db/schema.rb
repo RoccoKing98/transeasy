@@ -11,29 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_26_133312) do
-  create_table "rails_i18n_manager_translation_apps", force: :cascade do |t|
-    t.string "name"
-    t.string "default_locale"
-    t.text "additional_locales"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "rails_i18n_manager_translation_keys", force: :cascade do |t|
-    t.string "key"
-    t.integer "translation_app_id"
-    t.boolean "active", default: true, null: false
-    t.datetime "updated_at", precision: nil
-    t.index ["translation_app_id"], name: "index_translation_keys_on_translation_app_id"
-  end
-
-  create_table "rails_i18n_manager_translation_values", force: :cascade do |t|
-    t.integer "translation_key_id"
-    t.string "locale", limit: 5
-    t.string "translation"
-    t.datetime "updated_at", precision: nil
-    t.index ["translation_key_id"], name: "index_translation_values_on_translation_key_id"
-  end
 
   create_table "transeasy_translation_keys", force: :cascade do |t|
     t.string "key"
