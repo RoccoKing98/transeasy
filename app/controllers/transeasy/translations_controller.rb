@@ -16,7 +16,7 @@ module Transeasy
       if params[:target_languages].blank?
         flash[:alert] = 'Changes not saved. At least one target language must be selected'
       elsif @settings.update(setup_params)
-        flash[:notice] = 'Changes saved'
+        flash[:notice] = @settings.previous_changes.any?  ? 'Changes saved' : 'No changes made'
       else
         flash[:alert] = "Changes not saved. #{@settings.errors.full_messages.join(',')}"
       end
