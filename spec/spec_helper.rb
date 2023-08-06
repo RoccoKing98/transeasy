@@ -10,7 +10,6 @@ require 'active_support/all'
 
 # rubocop: disable Metrics/BlockLength
 RSpec.configure do |config|
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
@@ -49,6 +48,5 @@ RSpec.configure do |config|
       config.include ::Rails::Controller::Testing::Integration, type: type
     end
   end
-
 end
 # rubocop: enable Metrics/BlockLength

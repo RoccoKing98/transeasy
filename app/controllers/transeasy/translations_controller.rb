@@ -6,9 +6,9 @@ module Transeasy
     before_action :check_setup, except: [:save_setup]
 
     def index
-      unless ActiveRecord::Base.connection.data_source_exists? 'transeasy_translation_settings'
-        flash.alert = 'Has migration not yet been performed? Missing database'
-      end
+      return if ActiveRecord::Base.connection.data_source_exists? 'transeasy_translation_settings'
+
+      flash.alert = 'Has migration not yet been performed? Missing database'
     end
 
     def save_setup
@@ -16,7 +16,7 @@ module Transeasy
       if params[:target_languages].blank?
         flash[:alert] = 'Changes not saved. At least one target language must be selected'
       elsif @settings.update(setup_params)
-        flash[:notice] = @settings.previous_changes.any?  ? 'Changes saved' : 'No changes made'
+        flash[:notice] = @settings.previous_changes.any? ? 'Changes saved' : 'No changes made'
       else
         flash[:alert] = "Changes not saved. #{@settings.errors.full_messages.join(',')}"
       end

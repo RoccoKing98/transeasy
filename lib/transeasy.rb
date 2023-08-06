@@ -4,7 +4,6 @@ require 'transeasy/config'
 require 'transeasy/engine'
 # The Transeasy module
 module Transeasy
-
   def self.config(&block)
     c = Transeasy::Config
 

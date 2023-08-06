@@ -19,7 +19,7 @@ module Transeasy
     # rubocop:disable Metrics/AbcSize
     def target_languages_are_valid
       unless target_languages.instance_of?(String)
-        errors.add(:target_languages, "Invalid class #{target_languages.class.to_s} for target languages")
+        errors.add(:target_languages, "Invalid class #{target_languages.class} for target languages")
         return false
       end
 

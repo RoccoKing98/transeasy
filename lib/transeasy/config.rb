@@ -103,5 +103,4 @@ module Transeasy
     ].freeze
     mattr_accessor :all_translation_engines
   end
-
 end

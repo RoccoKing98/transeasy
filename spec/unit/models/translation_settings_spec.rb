@@ -4,7 +4,6 @@ require 'spec_helper'
 
 module Transeasy
   RSpec.describe TranslationSetting, type: :model do
-
     let(:translation_settings) { FactoryBot.create(:translation_setting) }
 
     context 'validations' do
@@ -25,8 +24,6 @@ module Transeasy
         translation_settings.valid?
         expect(translation_settings.errors[:root_language]).to be_present
       end
-
     end
-
   end
 end

@@ -5,5 +5,4 @@ module Transeasy
 
     validates :key, presence: true, uniqueness: { case_sensitive: false }
   end
-
 end
