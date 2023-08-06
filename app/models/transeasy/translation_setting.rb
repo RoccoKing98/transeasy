@@ -33,6 +33,7 @@ module Transeasy
     # rubocop:enable Metrics/AbcSize
 
     def root_language_not_target_language
+      return if target_languages.blank?
       return unless JSON.parse(target_languages)&.include?(root_language)
 
       errors.add(:root_language, 'Root language cannot also be a target language')
