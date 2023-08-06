@@ -11,7 +11,7 @@ h1.page-title Transeasy Configuration
     .col-auto
       = f.label('Target languages:')
     .col-auto
-      = select_tag(:target_languages, options_for_select(Transeasy.config.all_languages.map{|l| l[:title] }.sort, to_array(f.object&.target_languages)), multiple: true, class: 'form-select', style: 'min-width: 200px', id: 'target-languages')
+      = select_tag(:target_languages, options_for_select(Transeasy.config.all_languages.map{|l| l[:title] }.sort, JSON.parse(f.object&.target_languages)), multiple: true, class: 'form-select', style: 'min-width: 200px', id: 'target-languages')
 
   .row.align-items-center.mb-5.mt-5
     .col-auto
