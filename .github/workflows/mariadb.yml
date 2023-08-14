@@ -16,7 +16,6 @@ jobs:
     services:
       mariadb:
         image: mariadb:latest
-        allow-failure: true
         ports:
           - 3306:3306
         env:
