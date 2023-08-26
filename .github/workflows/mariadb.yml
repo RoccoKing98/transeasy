@@ -10,8 +10,9 @@ on:
       - '*'
 
 jobs:
-  build:
+  test_mariadb:
     runs-on: ubuntu-20.04
+
 
     services:
       mariadb:
@@ -25,6 +26,28 @@ jobs:
           MARIADB_PASSWORD: test_password
         options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=3
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          ### TEST ALL RUBY VERSIONS, USE DEFAULT GEMFILE
+          - ruby: 2.7
+          - ruby: "3.0" ### must be quoted otherwise will be treated as "3" which will resolve to latest 3.x version
+          - ruby: 3.1
+          - ruby: 3.2
+
+          ### RAILS VERSION TESTING
+          - ruby: "3.0"
+            env:
+              RAILS_VERSION: "6.1"
+          - ruby: "3.1"
+            env:
+              RAILS_VERSION: "7.0"
+
+    env:
+      BUNDLE_GEMFILE: "${{ matrix.gemfile }}"
+      DB_GEM: "mariadb"
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -32,7 +55,8 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: "${{ matrix.ruby }}"
+          bundler-cache: true
 
       - name: Install Dependencies
         run: |
