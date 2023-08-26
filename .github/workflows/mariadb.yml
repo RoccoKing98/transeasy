@@ -49,6 +49,8 @@ jobs:
       DB_GEM: "mariadb"
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -57,11 +59,6 @@ jobs:
         with:
           ruby-version: "${{ matrix.ruby }}"
           bundler-cache: true
-
-      - name: Install Dependencies
-        run: |
-          gem install bundler
-          bundle install
 
       - name: Set up Database
         run: |
