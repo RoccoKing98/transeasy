@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    transeasy (0.0.4)
+    transeasy (0.0.5)
       bootstrap (>= 5.2)
       papertrail
       rails (>= 7.0)
