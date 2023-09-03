@@ -31,8 +31,6 @@ jobs:
       matrix:
         include:
           ### TEST ALL RUBY VERSIONS, USE DEFAULT GEMFILE
-          - ruby: 2.7
-            brakeman_version: 5.4.1
           - ruby: "3.0" ### must be quoted otherwise will be treated as "3" which will resolve to latest 3.x version
             brakeman_version: 6.0.0.1
           - ruby: 3.1
@@ -76,11 +74,14 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
 
-      - name: Install Brakeman
-        run: gem install brakeman -v ${{ matrix.brakeman_version }}
-
       - name: Run Brakeman
         run: bundle exec brakeman
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+      - name: Run Bundler Audit
+        run: bundle exec bundle-audit check --update
 
       - name: Run Tests
         run: |

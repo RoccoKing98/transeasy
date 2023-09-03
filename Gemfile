@@ -9,7 +9,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gemspec
 
 group :development do
-  # gem 'brakeman'
+  gem 'brakeman'
   gem 'bundler-audit'
   gem 'rubocop'
   gem 'ruby_audit'
