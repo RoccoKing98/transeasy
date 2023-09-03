@@ -78,7 +78,10 @@ jobs:
 
       - name: Install Brakeman
         run: gem install brakeman -v ${{ matrix.brakeman_version }}
-        
+
+      - name: Run Brakeman
+        run: bundle exec brakeman
+
       - name: Run Tests
         run: |
           bundle exec rspec
