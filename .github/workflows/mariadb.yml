@@ -32,9 +32,13 @@ jobs:
         include:
           ### TEST ALL RUBY VERSIONS, USE DEFAULT GEMFILE
           - ruby: 2.7
+            brakeman_version: 5.4.1
           - ruby: "3.0" ### must be quoted otherwise will be treated as "3" which will resolve to latest 3.x version
+            brakeman_version: 6.0.0
           - ruby: 3.1
+            brakeman_version: 6.0.0
           - ruby: 3.2
+            brakeman_version: 6.0.0
 
           ### RAILS VERSION TESTING
           - ruby: "3.0"
@@ -49,10 +53,9 @@ jobs:
       DB_GEM: "mariadb"
 
     steps:
-      - uses: actions/checkout@v3
 
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
