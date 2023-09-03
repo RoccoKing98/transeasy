@@ -55,6 +55,8 @@ Style/Documentation:
 # SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
   Enabled: true
+  Exclude:
+    - 'spec/dummy/db/schema.rb'
 
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
