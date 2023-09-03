@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Transeasy
   # The key for each translation
   class TranslationKey < ApplicationRecord

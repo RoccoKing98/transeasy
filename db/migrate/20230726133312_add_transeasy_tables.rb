@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddTranseasyTables < ActiveRecord::Migration[7.0]
   def change
     drop_table :transeasy_translation_settings, if_exists: true

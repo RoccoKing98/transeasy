@@ -16,7 +16,6 @@ module Transeasy
       Transeasy.config.all_translation_engines.map { |e| e[:name] }.include?(translation_engine)
     end
 
-    # rubocop:disable Metrics/AbcSize
     def target_languages_are_valid
       unless target_languages.instance_of?(String)
         errors.add(:target_languages, "Invalid class #{target_languages.class} for target languages")
@@ -30,7 +29,6 @@ module Transeasy
         errors.add(:target_languages, "Invalid target language #{l}")
       end
     end
-    # rubocop:enable Metrics/AbcSize
 
     def root_language_not_target_language
       return if target_languages.blank?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Transeasy
   # The translations
   class TranslationValue < ApplicationRecord
