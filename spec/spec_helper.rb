@@ -39,7 +39,7 @@ RSpec.configure do |config|
       example.run
     end
   end
-
+  # rubocop:disable Style/HashSyntax
   require 'rails-controller-testing'
   RSpec.configure do |config|
     %i[controller view request].each do |type|
@@ -48,5 +48,6 @@ RSpec.configure do |config|
       config.include(::Rails::Controller::Testing::Integration, type: type)
     end
   end
+  # rubocop:enable Style/HashSyntax
 end
 # rubocop: enable Metrics/BlockLength
