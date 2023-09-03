@@ -34,19 +34,21 @@ jobs:
           - ruby: 2.7
             brakeman_version: 5.4.1
           - ruby: "3.0" ### must be quoted otherwise will be treated as "3" which will resolve to latest 3.x version
-            brakeman_version: 6.0.0
+            brakeman_version: 6.0.0.1
           - ruby: 3.1
-            brakeman_version: 6.0.0
+            brakeman_version: 6.0.0.1
           - ruby: 3.2
-            brakeman_version: 6.0.0
+            brakeman_version: 6.0.0.1
 
           ### RAILS VERSION TESTING
           - ruby: "3.0"
             env:
               RAILS_VERSION: "6.1"
+            brakeman_version: 6.0.0.1
           - ruby: "3.1"
             env:
               RAILS_VERSION: "7.0"
+            brakeman_version: 6.0.0.1
 
     env:
       BUNDLE_GEMFILE: "${{ matrix.gemfile }}"
@@ -74,6 +76,9 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
 
+      - name: Install Brakeman
+        run: gem install brakeman -v ${{ matrix.brakeman_version }}
+        
       - name: Run Tests
         run: |
           bundle exec rspec
