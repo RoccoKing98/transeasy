@@ -39,6 +39,16 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@playwright/test@^1.37.1":
+  version "1.37.1"
+  resolved "https://registry.npmjs.org/@playwright/test/-/test-1.37.1.tgz"
+  integrity sha512-bq9zTli3vWJo8S3LwB91U0qDNQDpEXnw7knhxLM0nwDvexQAwx9tO8iKDZSqqneVq+URd/WIoz+BALMqUTgdSg==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.37.1"
+  optionalDependencies:
+    fsevents "2.3.2"
+
 "@types/node@*", "@types/node@^16.18.39":
   version "16.18.41"
   resolved "https://registry.npmjs.org/@types/node/-/node-16.18.41.tgz"
@@ -901,6 +911,11 @@ pify@^2.2.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
+
+playwright-core@1.37.1:
+  version "1.37.1"
+  resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.37.1.tgz"
+  integrity sha512-17EuQxlSIYCmEMwzMqusJ2ztDgJePjrbttaefgdsiqeLWidjYz9BxXaTaZWxH1J95SHGk6tjE+dwgWILJoUZfA==
 
 pretty-bytes@^5.6.0:
   version "5.6.0"
