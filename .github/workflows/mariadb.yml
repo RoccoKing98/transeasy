@@ -79,7 +79,7 @@ jobs:
 
       - name: Prepare Database
         run: |
-          docker run -d --name transeasy 3000:3000 transeasy
+          docker run -d --name transeasy -p 3000:3000 transeasy
           docker exec transeasy bundle exec rails db:create
           docker exec transeasy bundle exec rails db:migrate
 
