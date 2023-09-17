@@ -3,12 +3,16 @@
 module Transeasy
   # Controller for translations
   class TranslationsController < ApplicationController
-    before_action :check_setup, except: [:save_setup]
+    before_action :check_setup, except: %i[save_setup setup]
 
     def index
-      return if ActiveRecord::Base.connection.data_source_exists? 'transeasy_translation_settings'
+      return if ActiveRecord::Base.connection.data_source_exists?('transeasy_translation_settings')
 
       flash.alert = 'Has migration not yet been performed? Missing database'
+    end
+
+    def setup
+      @settings = TranslationSetting.first_or_create
     end
 
     def save_setup
@@ -30,6 +34,15 @@ module Transeasy
 
     def setup_params
       params.permit(:root_language, :translation_engine, :translation_engine_parameters, target_languages: [])
+    end
+
+    def clear_database
+      return unless Rails.env.test?
+
+      TranslationSetting.destroy_all
+      flash[:notice] = 'Databases cleared'
+
+      redirect_to :setup
     end
   end
 end
