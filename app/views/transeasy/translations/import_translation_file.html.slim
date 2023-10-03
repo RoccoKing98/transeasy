@@ -1,0 +1,6 @@
+h1.page-title Transeasy Import Translation File
+= form_with model: Transeasy::TranslationFile, url: save_setup_translations_path, method: :post do |f|
+  = f.file_field 'Select translation file', accept: '.yml'
+
+  p
+  = f.submit('Import Translation File', class: 'btn btn-primary')

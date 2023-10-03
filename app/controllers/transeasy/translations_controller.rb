@@ -6,6 +6,8 @@ module Transeasy
     before_action :check_setup, except: %i[save_setup setup]
 
     def index
+      @translation_files = TranslationFile.all
+
       return if ActiveRecord::Base.connection.data_source_exists?('transeasy_translation_settings')
 
       flash.alert = 'Has migration not yet been performed? Missing database'
@@ -32,9 +34,9 @@ module Transeasy
       redirect_to :setup unless @settings.persisted?
     end
 
-    def setup_params
-      params.permit(:root_language, :translation_engine, :translation_engine_parameters, target_languages: [])
-    end
+    def import_translation_file; end
+
+    def create_translation_file; end
 
     def clear_database
       return unless Rails.env.test?
@@ -43,6 +45,12 @@ module Transeasy
       flash[:notice] = 'Databases cleared'
 
       redirect_to :setup
+    end
+
+    private
+
+    def setup_params
+      params.permit(:root_language, :translation_engine, :translation_engine_parameters, target_languages: [])
     end
   end
 end
