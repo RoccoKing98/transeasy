@@ -5,6 +5,11 @@ class AddTranseasyTables < ActiveRecord::Migration[7.0]
     drop_table :transeasy_translation_settings, if_exists: true
     drop_table :transeasy_translation_keys, if_exists: true
     drop_table :transeasy_translation_values, if_exists: true
+    drop_table :transeasy_translation_files, if_exists: true
+
+    create_table :transeasy_translation_files do |t|
+      t.string :file_name, null: false
+    end
 
     create_table :transeasy_translation_settings do |t|
       t.string :root_language, null: false
@@ -30,4 +35,5 @@ class AddTranseasyTables < ActiveRecord::Migration[7.0]
       t.timestamps
     end
   end
+
 end
