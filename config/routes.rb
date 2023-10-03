@@ -9,6 +9,8 @@ Transeasy::Engine.routes.draw do
     member do
       post :save_setup
       get :clear_database if Rails.env.test?
+      get :import_translation_file
+      get :create_translation_file
     end
     collection do
       get :index
