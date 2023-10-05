@@ -12,5 +12,7 @@ group :development do
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
+  gem 'rubocop-rspec'
   gem 'ruby_audit'
 end

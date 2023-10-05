@@ -29,5 +29,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'minitest_change_assertions', '~> 1.0', '>= 1.0.1'
   spec.add_development_dependency 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   spec.add_development_dependency 'rspec-rails', '~> 6.0', '>= 6.0.3'
+  spec.add_development_dependency 'rubocop', '~> 1.56', '>= 1.56.4'
+  spec.add_development_dependency 'rubocop-factory_bot', '~> 2.24'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.24', '>= 2.24.1'
   spec.add_development_dependency 'sqlite3', '~> 1.6', '>= 1.6.6'
 end
