@@ -37,19 +37,57 @@ module Transeasy
     def import_translation_file; end
 
     def edit_translation_file
-      @translation_file = TranslationFile.find_by(file_name: params['file_name'])
+      return if (@translation_file = TranslationFile.find_by(id: params['id']))
+
+      @translation_file = TranslationFile.new
     end
 
     def create_translation_file
-      if TranslationFile.find_by(file_name: params['translation_file']['file_name'])
-        flash[:alert] = "File #{params['translation_file']['file_name']} already exists"
+      file_name = params['translation_file']['file_name']
+
+      if TranslationFile.find_by(file_name:)
+        flash[:alert] = "File #{file_name} already exists"
       elsif (@translation_file = TranslationFile.create(create_translation_file_params))
-        flash[:notice] = "Translation File #{params['translation_file']['file_name']} created"
+        @translation_file.create_files
+        flash[:notice] = "Translation File #{file_name} created"
       else
-        flash[:alert] = "File #{params['translation_file']['file_name']} could not be created.
-                Errors : #{@translation_file.errors.full_messages.join(', ')}"
+        flash[:alert] = "File #{file_name} could not be created.
+            Errors : #{@translation_file.errors.full_messages.join(', ')}"
       end
-      render :edit_translation_file
+      redirect_to :translations
+    end
+
+    def update_translation_file
+      @translation_file = TranslationFile.find(params['translation_file']['id'])
+
+      if @translation_file.update(create_translation_file_params)
+        flash[:notice] = if @translation_file.previous_changes.any?
+                           change = @translation_file.previous_changes['file_name']
+                           TranslationFile.rename_files(change[0], change[1])
+                           "Translation File #{params['file_name']} updated"
+                         else
+                           'No changes made'
+                         end
+      else
+        flash[:alert] = "File #{params['file_name']} could not be updated.
+            Errors : #{@translation_file.errors.full_messages.join(', ')}"
+      end
+
+      redirect_to :translations
+    end
+
+    def delete_translation_file
+      translation_file = TranslationFile.find(params[:id])
+      name = translation_file.file_name
+      translation_file.delete_files
+      if translation_file.destroy
+        flash[:notice] = "File #{name} destroyed"
+      else
+        flash[:alert] =
+          "File #{name} could not be destroyed. Errors : #{translation_file.errors.full_messages.join(', ')}"
+      end
+
+      redirect_to :translations
     end
 
     def clear_database
@@ -68,7 +106,7 @@ module Transeasy
     end
 
     def create_translation_file_params
-      params.require(:translation_file).permit(:file_name)
+      params.require(:translation_file).permit(:file_name, :id)
     end
   end
 end
