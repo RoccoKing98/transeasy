@@ -30,11 +30,15 @@ Lint/ShadowingOuterLocalVariable:
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
   Max: 22
+  Exclude:
+    - 'db/migrate/*rb'
 
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 Metrics/MethodLength:
   Max: 24
+  Exclude:
+    - 'db/migrate/*rb'
 
 # Offense count: 2
 Style/ClassVars:
@@ -47,7 +51,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'db/migrate/20230726133312_add_transeasy_tables.rb'
+    - 'db/migrate/*rb'
 
 # Offense count: 31
 # This cop supports unsafe autocorrection (--autocorrect-all).
