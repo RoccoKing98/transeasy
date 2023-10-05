@@ -27,3 +27,13 @@ Mount the engine as a sub-path in your application, changing the target as desir
 
 mount Transeasy::Engine, at: "/transeasy", as: "transeasy"
 ```
+## Configuration
+
+By default, the application looks in 'config/locales' for the translation files. You can specify a different directory with the command
+```ruby
+###  config/initializers/transeasy.rb
+
+Transeasy.config do |config|
+  config.locales_path = ENV.fetch("LOCALES_PATH", Rails.root.join('config', 'locales'))
+end
+```
