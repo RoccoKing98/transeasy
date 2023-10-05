@@ -36,7 +36,11 @@ module Transeasy
 
     def import_translation_file; end
 
-    def create_translation_file; end
+    def edit_translation_file; end
+
+    def create_translation_file
+      raise
+    end
 
     def clear_database
       return unless Rails.env.test?
