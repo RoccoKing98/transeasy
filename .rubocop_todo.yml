@@ -76,3 +76,7 @@ Style/RedundantFetchBlock:
 Style/StringLiterals:
   Exclude:
     - 'spec/dummy/db/schema.rb'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'spec/dummy/db/schema.rb'
