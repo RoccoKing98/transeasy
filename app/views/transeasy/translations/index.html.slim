@@ -4,7 +4,7 @@ h1.page-title Transeasy Home
   - if @translation_files
 
     - @translation_files.each do |tf|
-      = "Edit: #{tf[:file_name]}"
+      =  link_to "Edit file : #{tf[:file_name]}", edit_translation_file_translations_path(file_name: tf[:file_name]), class: 'btn btn-primary btn-sm'
 
   p
   = link_to "Import Translation File", import_translation_file_translations_path, class: 'btn btn-primary btn-sm'

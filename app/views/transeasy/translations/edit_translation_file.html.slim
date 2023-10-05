@@ -1,10 +1,11 @@
 h1.page-title Transeasy Create Translation File
 p
-= form_with model: Transeasy::TranslationFile, url: create_translation_file_translations_path, method: :post do |f|
+= form_with model: @translation_file, url: create_translation_file_translations_path, method: :post do |f|
   p
   = f.label('Translation file name (file will automatically be suffixed with language) : ')
-  = f.text_field :translation_file_name, required: true
+  = f.text_field :file_name, required: true, value: f.object&.file_name
 
 
   p
-  = f.submit('Create Translation File', class: 'btn btn-primary')
+  - action = @translation_file ? 'Update' : 'Create'
+  = f.submit("#{action} Translation File", class: 'btn btn-primary')

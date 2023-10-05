@@ -36,10 +36,20 @@ module Transeasy
 
     def import_translation_file; end
 
-    def edit_translation_file; end
+    def edit_translation_file
+      @translation_file = TranslationFile.find_by(file_name: params['file_name'])
+    end
 
     def create_translation_file
-      raise
+      if TranslationFile.find_by(file_name: params['translation_file']['file_name'])
+        flash[:alert] = "File #{params['translation_file']['file_name']} already exists"
+      elsif (@translation_file = TranslationFile.create(create_translation_file_params))
+        flash[:notice] = "Translation File #{params['translation_file']['file_name']} created"
+      else
+        flash[:alert] = "File #{params['translation_file']['file_name']} could not be created.
+                Errors : #{@translation_file.errors.full_messages.join(', ')}"
+      end
+      render :edit_translation_file
     end
 
     def clear_database
@@ -55,6 +65,10 @@ module Transeasy
 
     def setup_params
       params.permit(:root_language, :translation_engine, :translation_engine_parameters, target_languages: [])
+    end
+
+    def create_translation_file_params
+      params.require(:translation_file).permit(:file_name)
     end
   end
 end
