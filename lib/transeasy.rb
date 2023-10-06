@@ -6,10 +6,14 @@ require 'transeasy/engine'
 module Transeasy
   # configure the gem
   class Config
-    attr_reader :locales_path
+    attr_accessor :locales_path
 
     def self.locales_path=(path = 'config/locales')
       @locales_path = path
+    end
+
+    def self.locales_path
+      @locales_path ||= 'config/locales'
     end
   end
 
