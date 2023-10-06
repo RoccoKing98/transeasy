@@ -1,4 +1,5 @@
-h1.page-title Transeasy Create Translation File
+- action = @translation_file.persisted? ? 'Update' : 'Create'
+h1.page-title#foo Transeasy #{action} Translation File
 p
 - file_exists = @translation_file.persisted?
 = form_with model: @translation_file, url: (file_exists ? update_translation_file_translations_path : create_translation_file_translations_path), method: (file_exists ?  :patch : :post) do |f|
@@ -7,9 +8,8 @@ p
   = f.text_field :file_name, required: true, value: f.object&.file_name
   = f.hidden_field :id, value: f.object&.id
 
-  - action = @translation_file.persisted? ? 'Update' : 'Create'
   p
   - if @translation_file.persisted?
-    = link_to 'Delete Translation File', delete_translation_file_translations_path(id: f.object), class: 'btn btn-danger', method: :patch, data: { confirm: 'Warning - all translations for this file will be destroyed. Are you sure you want to delete the file'}
+    = link_to 'Delete Translation File', delete_translation_file_translations_path(id: f.object), class: 'btn btn-danger mr-5', method: :patch, data: { confirm: 'Warning - all translations for this file will be destroyed. Are you sure you want to delete the file'}
 
   = f.submit("#{action} Translation File", class: 'btn btn-primary')

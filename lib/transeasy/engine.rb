@@ -12,7 +12,7 @@ module Transeasy
       # app.config.assets.paths << Rails.root.join('node_modules/bootstrap/dist/css')
       # app.config.assets.paths << Rails.root.join('node_modules/bootstrap/dist/js')
 
-      # app.config.assets.precompile << /\.(?:svg|eot|woff|woff2|ttf)$/
+      app.config.assets.precompile << 'transeasy.css'
       # app.config.assets.precompile << /\.(?:png|jpg|jpeg|gif)$/
     end
   end
