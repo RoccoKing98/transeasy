@@ -1,5 +1,5 @@
 - action = @translation_file.persisted? ? 'Update' : 'Create'
-h1.page-title#foo Transeasy #{action} Translation File
+h1.page-title Transeasy #{action} Translation File
 p
 - file_exists = @translation_file.persisted?
 = form_with model: @translation_file, url: (file_exists ? update_translation_file_translations_path : create_translation_file_translations_path), method: (file_exists ?  :patch : :post) do |f|
