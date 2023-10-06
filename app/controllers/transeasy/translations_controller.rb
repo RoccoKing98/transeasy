@@ -90,6 +90,12 @@ module Transeasy
       redirect_to :translations
     end
 
+    def edit_translations
+      translation_file = TranslationFile.find(params[:id])
+
+      render :edit_translations, locals: { translations: translation_file.all_translations }
+    end
+
     def clear_database
       return unless Rails.env.test?
 

@@ -44,6 +44,12 @@ module Transeasy
       end
     end
 
+    def all_translations
+      []
+    end
+
+    private
+
     def full_file_name(language)
       TranslationFile.full_file_name(file_name, language)
     end

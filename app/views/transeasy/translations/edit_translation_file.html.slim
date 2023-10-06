@@ -9,7 +9,10 @@ p
   = f.hidden_field :id, value: f.object&.id
 
   p
+  = f.submit("#{action} Translation File", class: 'btn btn-primary mr-5')
+
   - if @translation_file.persisted?
     = link_to 'Delete Translation File', delete_translation_file_translations_path(id: f.object), class: 'btn btn-danger mr-5', method: :patch, data: { confirm: 'Warning - all translations for this file will be destroyed. Are you sure you want to delete the file'}
 
-  = f.submit("#{action} Translation File", class: 'btn btn-primary')
+  p
+  = link_to "Edit Translations", edit_translations_translations_path(id: f.object), class: 'btn btn-primary'
