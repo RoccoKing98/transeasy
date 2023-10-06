@@ -3,7 +3,7 @@ h1.page-title Transeasy Home
 = form_with model: @translation_files, url: save_setup_translations_path, method: :post do |f|
   - if @translation_files
     - @translation_files.each do |tf|
-      p =  link_to "Edit file : #{tf[:file_name]}", edit_translation_file_translations_path(id: tf), class: 'btn btn-primary btn-sm'
+      p =  link_to "Edit Translation File : #{tf[:file_name]}", edit_translation_file_translations_path(id: tf), class: 'btn btn-info btn-sm'
 
   p
   = link_to "Import Translation File", import_translation_file_translations_path, class: 'btn btn-primary btn-sm'

@@ -4,7 +4,7 @@ p
 - file_exists = @translation_file.persisted?
 = form_with model: @translation_file, url: (file_exists ? update_translation_file_translations_path : create_translation_file_translations_path), method: (file_exists ?  :patch : :post) do |f|
   p
-  = f.label('Translation file name (file will automatically be suffixed with language) : ')
+  = f.label('Translation file name (file will automatically be suffixed with language) : ', class: 'mr-5')
   = f.text_field :file_name, required: true, value: f.object&.file_name
   = f.hidden_field :id, value: f.object&.id
 
