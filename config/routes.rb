@@ -15,6 +15,7 @@ Transeasy::Engine.routes.draw do
       patch :update_translation_file
       patch :delete_translation_file
       get :edit_translations
+      post :add_translation
     end
     collection do
       get :index
